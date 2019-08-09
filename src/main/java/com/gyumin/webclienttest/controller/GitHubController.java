@@ -12,6 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -63,13 +64,19 @@ public class GitHubController {
                 .baseUrl("https://api.github.com")
                 .build();
 
-        Mono<GitHubRepository[]> repositoriesMono = webClient.get().uri("/users/gyumin-kim/repos")
-                                                            .retrieve().bodyToMono(GitHubRepository[].class);
-        repositoriesMono.doOnSuccess(rm -> {
-            for (GitHubRepository repository : rm) {
-                System.out.println(repository.getUrl());
-            }
-        }).subscribe();
+//        Mono<GitHubRepository[]> repositoriesMono = webClient.get().uri("/users/gyumin-kim/repos")
+//                                                            .retrieve().bodyToMono(GitHubRepository[].class);
+//        repositoriesMono.doOnSuccess(rm -> {
+//            for (GitHubRepository repository : rm) {
+//                System.out.println(repository.getUrl());
+//            }
+//        }).subscribe();
+
+        List<GitHubRepository> gitHubRepositories = webClient.get().uri("/users/gyumin-kim/repos")
+                .retrieve().bodyToFlux(GitHubRepository.class).collectList().block();
+        for (GitHubRepository repository : gitHubRepositories) {
+            System.out.println(repository.getUrl());
+        }
 
         Mono<GitHubCommit[]> commitsMono = webClient.get().uri("/repos/gyumin-kim/object/commits")
                                                             .retrieve().bodyToMono(GitHubCommit[].class);
