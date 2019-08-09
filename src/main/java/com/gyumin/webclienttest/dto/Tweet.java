@@ -1,4 +1,4 @@
-package com.gyumin.webclienttest;
+package com.gyumin.webclienttest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

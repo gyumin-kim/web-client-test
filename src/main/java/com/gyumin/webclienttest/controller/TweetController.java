@@ -1,6 +1,6 @@
 package com.gyumin.webclienttest.controller;
 
-import com.gyumin.webclienttest.Tweet;
+import com.gyumin.webclienttest.dto.Tweet;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -18,7 +18,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-public class WebClientController {
+public class TweetController {
 
     private static final int DEFAULT_PORT = 8080;
 

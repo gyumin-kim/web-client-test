@@ -1,4 +1,4 @@
-package com.gyumin.webclienttest.github;
+package com.gyumin.webclienttest.dto;
 
 public class GitHubCommit {
 
